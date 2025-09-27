@@ -31,31 +31,31 @@ jobs:
 
     - name: Install dependencies
       run: |
-        cd app/frontend
+        cd frontend
         yarn install --frozen-lockfile
 
     - name: Build web app
       run: |
-        cd app/frontend
+        cd frontend
         yarn build
 
     - name: Add Android platform
       run: |
-        cd app/frontend
+        cd frontend
         npx cap add android
 
     - name: Sync Capacitor
       run: |
-        cd app/frontend
+        cd frontend
         npx cap sync android
 
     - name: Build Android APK
       run: |
-        cd app/frontend
+        cd frontend
         npx cap build android --prod
 
     - name: Upload Android APK
       uses: actions/upload-artifact@v4
       with:
         name: android-apk
-        path: app/frontend/android/app/build/outputs/apk/debug/app-debug.apk
+        path: frontend/android/app/build/outputs/apk/debug/app-debug.apk
