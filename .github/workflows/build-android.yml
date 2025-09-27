@@ -1,4 +1,4 @@
-name: Build Android Apps
+name: Build Android App
 
 on:
   push:
@@ -19,8 +19,15 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '18'
-        cache: 'yarn'
-        cache-dependency-path: frontend/yarn.lock  # make sure yarn.lock is really here
+
+    - name: Setup Java
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v3
 
     - name: Install dependencies
       run: |
